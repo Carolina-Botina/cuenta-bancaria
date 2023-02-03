@@ -38,7 +38,7 @@ ALTER TABLE cliente_cuenta
 
 ALTER TABLE cliente_cuenta
   ADD CONSTRAINT fk_cliente_cuenta_cliente FOREIGN KEY (cliente_cedula) REFERENCES cliente (cedula) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT fk_cliente_cuenta_cuenta FOREIGN KEY (cuenta_numero_cuenta) REFERENCES cuenta (numero_cuenta) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT fk_cliente_cuenta_cuenta FOREIGN KEY (cuenta_numero_cuenta) REFERENCES cuenta (numero_cuenta) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE transaccion (
   id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
