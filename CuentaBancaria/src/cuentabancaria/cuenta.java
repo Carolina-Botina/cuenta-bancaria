@@ -145,10 +145,20 @@ public class cuenta extends javax.swing.JFrame {
 
         txtMontoAbono.setBorder(null);
         txtMontoAbono.setEnabled(false);
+        txtMontoAbono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoAbonoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMontoAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 170, 20));
 
         txtMontoRetiro.setBorder(null);
         txtMontoRetiro.setEnabled(false);
+        txtMontoRetiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoRetiroKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMontoRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 170, 20));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
@@ -263,6 +273,20 @@ public class cuenta extends javax.swing.JFrame {
             sentencias.actualizarSaldoRetiro(numeroCuenta,monto_retiro);
         }
     }//GEN-LAST:event_btnAceptarRActionPerformed
+
+    private void txtMontoAbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoAbonoKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoAbonoKeyTyped
+
+    private void txtMontoRetiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoRetiroKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoRetiroKeyTyped
 
     /**
      * @param args the command line arguments
