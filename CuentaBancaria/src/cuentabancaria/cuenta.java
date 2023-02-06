@@ -242,10 +242,12 @@ public class cuenta extends javax.swing.JFrame {
 
     private void btnCancelarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAActionPerformed
         desactivarAbono();
+        txtMontoAbono.setText("");
     }//GEN-LAST:event_btnCancelarAActionPerformed
 
     private void btnCancelarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRActionPerformed
         desactivarRetiro();
+        txtMontoRetiro.setText("");
     }//GEN-LAST:event_btnCancelarRActionPerformed
 
     private void btnAceptarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAActionPerformed
@@ -253,11 +255,16 @@ public class cuenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El campo no puede estar vacio","Error",JOptionPane.ERROR_MESSAGE);
         }else{
             float monto_abono = Float.parseFloat(txtMontoAbono.getText());
-            String numeroCuenta = lblNumeroCuenta.getText();
-            txtMontoAbono.setText("");
-            sentencias.abono(monto_abono);
-            sentencias.cuentaTransaccion(numeroCuenta);
-            sentencias.actualizarSaldoAbono(numeroCuenta,monto_abono);
+            if (monto_abono < 10000) {
+                JOptionPane.showMessageDialog(this, "Abonos a partir de $10.000","Error",JOptionPane.ERROR_MESSAGE);
+                txtMontoAbono.setText("");
+            }else{
+                String numeroCuenta = lblNumeroCuenta.getText();
+                txtMontoAbono.setText("");
+                sentencias.abono(monto_abono);
+                sentencias.cuentaTransaccion(numeroCuenta);
+                sentencias.actualizarSaldoAbono(numeroCuenta,monto_abono);
+            }
         }
     }//GEN-LAST:event_btnAceptarAActionPerformed
 
