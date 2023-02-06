@@ -26,7 +26,8 @@ public class SentenciasSql {
     
     public SentenciasSql(){
         String servidor = "jdbc:mysql://localhost:3306/cuenta_bancaria";
-        sentencias(servidor, "root");
+        String usuario = "root";
+        sentencias(servidor, usuario);
     }
     
     private void sentencias(String servidor, String usuario){
@@ -55,9 +56,10 @@ public class SentenciasSql {
             resId = guardarTransaccion.getGeneratedKeys();
             if (resId.next()) {
                 id = resId.getInt(1);
+                JOptionPane.showMessageDialog(null, "Su dinero ha sido almacenado con éxito");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error de transacción","Error",JOptionPane.ERROR_MESSAGE);
             }
-            
-            JOptionPane.showMessageDialog(null, "Su dinero ha sido almacenado con éxito");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
