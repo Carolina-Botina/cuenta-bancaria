@@ -273,11 +273,16 @@ public class cuenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"El campo no puede estar vacío","Error",JOptionPane.ERROR_MESSAGE);
         }else{
             float monto_retiro = Float.parseFloat(txtMontoRetiro.getText());
-            String numeroCuenta = lblNumeroCuenta.getText();
-            txtMontoRetiro.setText("");
-            sentencias.retiro(monto_retiro);
-            sentencias.cuentaTransaccion(numeroCuenta);
-            sentencias.actualizarSaldoRetiro(numeroCuenta,monto_retiro);
+            if (monto_retiro < 10000) {
+                JOptionPane.showMessageDialog(this,"Retiros a partir de $10.000","Error",JOptionPane.ERROR_MESSAGE);
+                txtMontoRetiro.setText("");
+            }else{
+                String numeroCuenta = lblNumeroCuenta.getText();
+                txtMontoRetiro.setText("");
+                sentencias.retiro(monto_retiro);
+                sentencias.cuentaTransaccion(numeroCuenta);
+                sentencias.actualizarSaldoRetiro(numeroCuenta,monto_retiro);
+            }
         }
     }//GEN-LAST:event_btnAceptarRActionPerformed
 
