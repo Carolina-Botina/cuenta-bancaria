@@ -16,13 +16,16 @@ import javax.swing.JOptionPane;
 public class SentenciasSql {
     private Connection conex;
     private ResultSet resId;
+    private ResultSet resSaldo;
     //La variable id guarda el último id registrado en la tabla transaccion
     int id = 0;
+    int saldo = 0;
     
     private PreparedStatement guardarTransaccion;
     private PreparedStatement guardarCuentaTransaccion;
     private PreparedStatement actualizarSaldoAbono;
     private PreparedStatement actualizarSaldoRetiro;
+    private PreparedStatement saldoRetiro;
     
     public SentenciasSql(){
         String servidor = "jdbc:mysql://localhost:3306/cuenta_bancaria";
@@ -39,6 +42,7 @@ public class SentenciasSql {
             guardarCuentaTransaccion = conex.prepareStatement("INSERT INTO cuenta_transaccion(cuenta_numero_cuenta,transaccion_id) VALUES (?,?)");
             actualizarSaldoAbono = conex.prepareStatement("UPDATE cuenta SET saldo_total=saldo_total+? WHERE numero_cuenta=?");
             actualizarSaldoRetiro = conex.prepareStatement("UPDATE cuenta SET saldo_total=saldo_total-? WHERE numero_cuenta=?");
+            saldoRetiro = conex.prepareStatement("SELECT saldo_total FROM cuenta WHERE numero_cuenta=?");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -46,7 +50,6 @@ public class SentenciasSql {
     
 
     public void abono(float monto_abono){
-        
         try {
             guardarTransaccion.setString(1, "Abono");
             guardarTransaccion.setFloat(2, monto_abono);
@@ -70,7 +73,6 @@ public class SentenciasSql {
             guardarCuentaTransaccion.setString(1, numeroCuenta);
             guardarCuentaTransaccion.setInt(2, id);
             guardarCuentaTransaccion.execute();
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -86,20 +88,29 @@ public class SentenciasSql {
         }
     }
     
-    public void retiro(float monto_abono){
-        
+    public void retiro(float monto_retiro, String numero_cuenta){
         try {
-            guardarTransaccion.setString(1, "Retiro");
-            guardarTransaccion.setFloat(2, monto_abono);
-            guardarTransaccion.setString(3, LocalDate.now()+"");
-            guardarTransaccion.execute();
-            
-            resId = guardarTransaccion.getGeneratedKeys();
-            if (resId.next()) {
-                id = resId.getInt(1);
+            saldoRetiro.setString(1, numero_cuenta);
+            resSaldo = saldoRetiro.executeQuery();
+            if (resSaldo.next()) {
+                saldo = resSaldo.getInt(1);
+                if (saldo < monto_retiro) {
+                    JOptionPane.showMessageDialog(null,"Lo sentimos, no es posible hacer la transacción ya que el monto a retirar es mayor que su saldo actual","Error",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    guardarTransaccion.setString(1, "Retiro");
+                    guardarTransaccion.setFloat(2, monto_retiro);
+                    guardarTransaccion.setString(3, LocalDate.now()+"");
+                    guardarTransaccion.execute();
+                    
+                    resId = guardarTransaccion.getGeneratedKeys();
+                    if (resId.next()) {
+                        id = resId.getInt(1);
+                        JOptionPane.showMessageDialog(null, "Retiro exitoso");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error de transacción","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
-            
-            JOptionPane.showMessageDialog(null, "Retiro exitoso");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
