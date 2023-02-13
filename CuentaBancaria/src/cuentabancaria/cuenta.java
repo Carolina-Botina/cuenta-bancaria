@@ -82,6 +82,8 @@ public class cuenta extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cuenta bancaria");
@@ -96,39 +98,38 @@ public class cuenta extends javax.swing.JFrame {
 
         jLabel5.setText("Número de cuenta:");
 
-        lblNumeroCuenta.setText("158900462147");
+        lblNumeroCuenta.setText("12345");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNumeroCuenta)))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNumeroCuenta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 177, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(170, 170, 170))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblNumeroCuenta)))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 70));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel2.setText("Saldo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
 
         btnRetirar.setText("Retirar");
         btnRetirar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +137,7 @@ public class cuenta extends javax.swing.JFrame {
                 btnRetirarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
+        jPanel1.add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
 
         btnAbonar.setText("Abonar");
         btnAbonar.addActionListener(new java.awt.event.ActionListener() {
@@ -144,13 +145,13 @@ public class cuenta extends javax.swing.JFrame {
                 btnAbonarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAbonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        jPanel1.add(btnAbonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         lblSaldo.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         lblSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSaldo.setText("0");
-        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 150, 350, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 430, 10));
+        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 350, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 480, 10));
 
         txtMontoAbono.setBorder(null);
         txtMontoAbono.setEnabled(false);
@@ -159,7 +160,7 @@ public class cuenta extends javax.swing.JFrame {
                 txtMontoAbonoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtMontoAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 170, 20));
+        jPanel1.add(txtMontoAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 170, 20));
 
         txtMontoRetiro.setBorder(null);
         txtMontoRetiro.setEnabled(false);
@@ -168,15 +169,15 @@ public class cuenta extends javax.swing.JFrame {
                 txtMontoRetiroKeyTyped(evt);
             }
         });
-        jPanel1.add(txtMontoRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 170, 20));
+        jPanel1.add(txtMontoRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 170, 20));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel3.setText("Añadir dinero:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("Retirar dinero:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
         btnAceptarA.setText("Aceptar");
         btnAceptarA.setEnabled(false);
@@ -185,7 +186,7 @@ public class cuenta extends javax.swing.JFrame {
                 btnAceptarAActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        jPanel1.add(btnAceptarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         btnCancelarA.setText("Cancelar");
         btnCancelarA.setEnabled(false);
@@ -194,7 +195,7 @@ public class cuenta extends javax.swing.JFrame {
                 btnCancelarAActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, -1));
+        jPanel1.add(btnCancelarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
 
         btnAceptarR.setText("Aceptar");
         btnAceptarR.setEnabled(false);
@@ -203,7 +204,7 @@ public class cuenta extends javax.swing.JFrame {
                 btnAceptarRActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
+        jPanel1.add(btnAceptarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
 
         btnCancelarR.setText("Cancelar");
         btnCancelarR.setEnabled(false);
@@ -212,28 +213,43 @@ public class cuenta extends javax.swing.JFrame {
                 btnCancelarRActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
+        jPanel1.add(btnCancelarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 10, 210));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 10, 210));
 
         jLabel7.setText("Monto:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         jLabel8.setText("Monto:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 170, 10));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 170, 10));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 170, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 170, 10));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 480, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
 
         pack();
@@ -362,10 +378,12 @@ public class cuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNumeroCuenta;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JTextField txtMontoAbono;
