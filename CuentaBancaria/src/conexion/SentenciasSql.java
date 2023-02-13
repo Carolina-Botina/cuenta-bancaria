@@ -133,9 +133,12 @@ public class SentenciasSql {
     
     public void actualizarSaldoRetiro(String numeroCuenta,float monto){
         try {
-            actualizarSaldoRetiro.setFloat(1, monto);
-            actualizarSaldoRetiro.setString(2, numeroCuenta);
-            actualizarSaldoRetiro.execute();
+            if (saldo < monto) {
+            }else{
+                actualizarSaldoRetiro.setFloat(1, monto);
+                actualizarSaldoRetiro.setString(2, numeroCuenta);
+                actualizarSaldoRetiro.execute();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
