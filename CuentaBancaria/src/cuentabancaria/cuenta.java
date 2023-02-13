@@ -40,6 +40,15 @@ public class cuenta extends javax.swing.JFrame {
         btnCancelarR.setEnabled(false);
     }
     
+    public void actualizarSaldo(){
+        String numeroCuenta = lblNumeroCuenta.getText();
+        String saldo_total = sentencias.consultarSaldo(numeroCuenta);
+        if (saldo_total.equals("No existe")) {
+            JOptionPane.showMessageDialog(this, "La cuenta no existe","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            lblSaldo.setText(saldo_total);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -264,6 +273,7 @@ public class cuenta extends javax.swing.JFrame {
                 sentencias.abono(monto_abono);
                 sentencias.cuentaTransaccion(numeroCuenta);
                 sentencias.actualizarSaldoAbono(numeroCuenta,monto_abono);
+                actualizarSaldo();
             }
         }
     }//GEN-LAST:event_btnAceptarAActionPerformed
@@ -282,6 +292,7 @@ public class cuenta extends javax.swing.JFrame {
                 sentencias.retiro(monto_retiro, numeroCuenta);
                 sentencias.cuentaTransaccion(numeroCuenta);
                 sentencias.actualizarSaldoRetiro(numeroCuenta,monto_retiro);
+                actualizarSaldo();
             }
         }
     }//GEN-LAST:event_btnAceptarRActionPerformed

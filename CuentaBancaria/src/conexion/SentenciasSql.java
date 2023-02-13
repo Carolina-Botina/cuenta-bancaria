@@ -26,6 +26,7 @@ public class SentenciasSql {
     private PreparedStatement actualizarSaldoAbono;
     private PreparedStatement actualizarSaldoRetiro;
     private PreparedStatement saldoRetiro;
+    private PreparedStatement consultarSaldo;
     
     public SentenciasSql(){
         String servidor = "jdbc:mysql://localhost:3306/cuenta_bancaria";
@@ -43,6 +44,7 @@ public class SentenciasSql {
             actualizarSaldoAbono = conex.prepareStatement("UPDATE cuenta SET saldo_total=saldo_total+? WHERE numero_cuenta=?");
             actualizarSaldoRetiro = conex.prepareStatement("UPDATE cuenta SET saldo_total=saldo_total-? WHERE numero_cuenta=?");
             saldoRetiro = conex.prepareStatement("SELECT saldo_total FROM cuenta WHERE numero_cuenta=?");
+            consultarSaldo = conex.prepareStatement("SELECT saldo_total FROM cuenta WHERE numero_cuenta=?");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -124,5 +126,21 @@ public class SentenciasSql {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public String consultarSaldo(String numeroCuenta){
+        String saldo = "";
+        try {
+            consultarSaldo.setString(1, numeroCuenta);
+            resSaldo = consultarSaldo.executeQuery();
+            if (resSaldo.next()) {
+                saldo = resSaldo.getString("saldo_total");
+            }else{
+                saldo = "No existe";
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return saldo;
     }
 }
