@@ -118,6 +118,19 @@ public class SentenciasSql {
         }
     }
     
+    public void cuentaTransaccionRetiro(String numeroCuenta, float monto_retiro){
+        try {
+            if (saldo < monto_retiro) {
+            }else{
+                guardarCuentaTransaccion.setString(1, numeroCuenta);
+                guardarCuentaTransaccion.setInt(2, id);
+                guardarCuentaTransaccion.execute();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public void actualizarSaldoRetiro(String numeroCuenta,float monto){
         try {
             actualizarSaldoRetiro.setFloat(1, monto);

@@ -290,7 +290,7 @@ public class cuenta extends javax.swing.JFrame {
                 String numeroCuenta = lblNumeroCuenta.getText();
                 txtMontoRetiro.setText("");
                 sentencias.retiro(monto_retiro, numeroCuenta);
-                sentencias.cuentaTransaccion(numeroCuenta);
+                sentencias.cuentaTransaccionRetiro(numeroCuenta, monto_retiro);
                 sentencias.actualizarSaldoRetiro(numeroCuenta,monto_retiro);
                 actualizarSaldo();
             }
